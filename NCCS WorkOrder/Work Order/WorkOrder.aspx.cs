@@ -184,7 +184,8 @@ public partial class Work_Order_WorkOrder : System.Web.UI.Page
             TDSRate.Text = string.Empty;
 
             double netAmount = Convert.ToDouble(txtNetAmnt.Text);
-            PaymentAmount.Text = netAmount.ToString("");
+            PaymentAmount.Text = Math.Floor(netAmount).ToString("");
+            RightOffAmount.Text = (netAmount % 1).ToString("N2");
             TDSAmount.Text = (0).ToString("");
 
             TDSAmount.Text = (0).ToString();
@@ -230,13 +231,15 @@ public partial class Work_Order_WorkOrder : System.Web.UI.Page
 
                 // new tds deducted payment amount
                 TDSAmount.Text = tdsAmount.ToString("");
-                PaymentAmount.Text = paymentAmount.ToString("");
+                PaymentAmount.Text = Math.Floor(paymentAmount).ToString("");
+                RightOffAmount.Text = (paymentAmount % 1).ToString("N2");
             }
             else
             {
                 double netAmount = Convert.ToDouble(txtNetAmnt.Text);
                 TDSAmount.Text = (0).ToString("");
-                PaymentAmount.Text = netAmount.ToString();
+                PaymentAmount.Text = Math.Floor(netAmount).ToString();
+                RightOffAmount.Text = (netAmount % 1).ToString("N2");
 
                 // emptying tds section
                 TDSSection.SelectedIndex = 0;
@@ -1035,7 +1038,15 @@ public partial class Work_Order_WorkOrder : System.Web.UI.Page
         }
         else
         {
+            // if tax was not applied at availability status
+
             divTaxHead.Visible = false;
+
+            double basicServiceAmount = Convert.ToDouble(Session["TotalBillAmount"]);
+            txtNetAmnt.Text = basicServiceAmount.ToString("N2");
+
+            PaymentAmount.Text = Math.Floor(basicServiceAmount).ToString("");
+            RightOffAmount.Text = (basicServiceAmount % 1).ToString("N2");
         }
     }
 
@@ -1078,7 +1089,8 @@ public partial class Work_Order_WorkOrder : System.Web.UI.Page
         txtNetAmnt.Text = netAmount.ToString("N2");
 
         // initially net amount == payment amount
-        PaymentAmount.Text = netAmount.ToString("N2");
+        PaymentAmount.Text = Math.Floor(netAmount).ToString("N2");
+        RightOffAmount.Text = (netAmount % 1).ToString("N2");
     }
 
 

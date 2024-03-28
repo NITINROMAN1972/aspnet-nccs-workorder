@@ -469,6 +469,22 @@
                     </div>
 
                     <!-- 3rd Row -->
+                    <div class="row mt-4 mb-3">
+
+                        <div class="col-md-9 align-self-end text-end"></div>
+
+                        <!-- Right=-Off Amount -->
+                        <div class="col-md-3 align-self-end text-end">
+                            <asp:Literal ID="Literal18" Text="Right-Off Amount (+/-) :" runat="server"></asp:Literal>
+                            <div class="input-group text-end">
+                                <span class="input-group-text fs-5 fw-light">₹</span>
+                                <asp:TextBox runat="server" ID="RightOffAmount" CssClass="form-control fw-lighter border border-2" ReadOnly="true"></asp:TextBox>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- 4th Row -->
                     <div class="row mb-3">
 
                         <div class="col-md-9 align-self-end text-end"></div>
